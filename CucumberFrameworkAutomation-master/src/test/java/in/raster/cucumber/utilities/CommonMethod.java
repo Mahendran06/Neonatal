@@ -36,6 +36,10 @@ public final class CommonMethod {
         webDriver.get(new PropertyReader().readProperty("administratorURL"));
     }
 
+    /*public static void writeText(){
+        webDriver.get(new PropertyWriter().loadWriter("Sucess"));
+    }*/
+
     public static void clearTextbox(WebElement element) {
         element.clear();
     }
@@ -100,9 +104,9 @@ public final class CommonMethod {
         return webDriver;
     }
 
-    public static String getBinaryExtensionAccordingToTheOs(){
+    public static String getBinaryExtensionAccordingToTheOs() {
         CurrentOS os;
-        switch (getOperatingSystem()){
+        switch (getOperatingSystem()) {
             case WINDOWS:
                 return ".exe";
             case MAC:
@@ -114,8 +118,8 @@ public final class CommonMethod {
     }
 
     /* these are the names in the resource folder, the names are given by the respective driver providers */
-    public static String getDriverName(String browserPropertyValue){
-        switch (browserPropertyValue){
+    public static String getDriverName(String browserPropertyValue) {
+        switch (browserPropertyValue) {
             case "CHROME":
                 return "chromedriver";
             case "FIREFOX":
@@ -124,8 +128,8 @@ public final class CommonMethod {
         return null;
     }
 
-    public static String getDriverForSetPropertyValue(String browserPropertyValue){
-        switch (browserPropertyValue){
+    public static String getDriverForSetPropertyValue(String browserPropertyValue) {
+        switch (browserPropertyValue) {
             case "CHROME":
                 return "webdriver.chrome.driver";
             case "FIREFOX":
@@ -134,7 +138,7 @@ public final class CommonMethod {
         return null;
     }
 
-    public static StringBuffer createDriverPath(String browserPropertyValue){
+    public static StringBuffer createDriverPath(String browserPropertyValue) {
         String driverPathFromPropertyFile = new PropertyReader().readProperty("driverBinariesPath");
         StringBuffer driverPath = new StringBuffer(driverPathFromPropertyFile);
         driverPath.append(
@@ -144,7 +148,7 @@ public final class CommonMethod {
     }
 
     public static void setDriverProperty(String browserPropertyValue) {
-        switch(browserPropertyValue){
+        switch (browserPropertyValue) {
             case "CHROME":
                 System.setProperty(getDriverForSetPropertyValue(browserPropertyValue),
                         String.valueOf(createDriverPath(browserPropertyValue)));
@@ -162,54 +166,54 @@ public final class CommonMethod {
         maximizeWindow();
     }
 
-    public void switchTOAlertAndClickOnAcceptButton(){
+    public void switchTOAlertAndClickOnAcceptButton() {
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
     }
 
-    public void switchTOAlertAndClickOnCancelButton(){
+    public void switchTOAlertAndClickOnCancelButton() {
         Alert alert = webDriver.switchTo().alert();
         alert.dismiss();
     }
 
-    public void rightMouseClickOnElement(WebElement element){
+    public void rightMouseClickOnElement(WebElement element) {
         Actions actions = new Actions(webDriver);
         actions.contextClick(element).perform();
     }
 
-    public void dragAndDrop(WebElement source, WebElement target){
+    public void dragAndDrop(WebElement source, WebElement target) {
         Actions action = new Actions(webDriver);
         action.dragAndDrop(source, target).perform();
     }
 
-    public void navigateBackInBrowser(){
+    public void navigateBackInBrowser() {
         webDriver.navigate().back();
     }
 
-    public void navigateForwardInBrowser(){
+    public void navigateForwardInBrowser() {
         webDriver.navigate().forward();
     }
 
-    public void refreshBrowser(){
+    public void refreshBrowser() {
         webDriver.navigate().refresh();
     }
 
-    public void scrollDown(){
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor )webDriver;
-        javascriptExecutor.executeScript("window.scrollBy(0,4500)","");
+    public void scrollDown() {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
+        javascriptExecutor.executeScript("window.scrollBy(0,4500)", "");
     }
 
-    public static void clickOndropDown(WebElement element, String value){
+    public static void clickOndropDown(WebElement element, String value) {
         Select dropDownValue = new Select(element);
-        try{
+        try {
             Integer value1 = Integer.parseInt(value);
             dropDownValue.selectByValue(value);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             dropDownValue.selectByVisibleText(value);
         }
     }
 
-    public static void clickOnCheckBox(WebElement element){
+    public static void clickOnCheckBox(WebElement element) {
         element.click();
     }
 
