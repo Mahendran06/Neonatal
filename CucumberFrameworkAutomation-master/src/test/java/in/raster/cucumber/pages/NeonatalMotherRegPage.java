@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import in.raster.cucumber.utilities.CommonMethod;
 
+import in.raster.cucumber.utilities.PropertyWriter;
+
 import java.util.Random;
 
 public class NeonatalMotherRegPage {
@@ -17,6 +19,8 @@ public class NeonatalMotherRegPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    private PropertyWriter pw = new PropertyWriter();
 
     /*Xpath*/
     /*Xpath for clicking New Registration*/
@@ -220,84 +224,88 @@ public class NeonatalMotherRegPage {
 
     /*Performing Actions*/
     /*Clicking on Create New Registration Element*/
-    public void clickOnNewPatientRegistrationTab(){
+    public void clickOnNewPatientRegistrationTab() {
         CommonMethod.clickOnElement(NewRegistration);
     }
 
 
     /*Clicking on Registration Tab*/
-    public void clickOnRegistrationTab(){
+    public void clickOnRegistrationTab() {
         CommonMethod.clickOnElement(RegistrationElement);
     }
 
     /*Clicking on mother registration*/
-    public void clickOnMotherRegTab(){
+    public void clickOnMotherRegTab() {
         CommonMethod.clickOnElement(motherRegistrationElement);
     }
 
     /*Checking whether mother registration page is displayed*/
-    public void checkMotherRegistrationPage(String actualValue){
+    public void checkMotherRegistrationPage(String actualValue) {
         Assert.assertEquals("Mother Registration Page is not displaying", motherRegText.getText(), actualValue);
     }
 
     /*Clicking on Create New Button*/
-    public void clickOnCreateNewButton(){
+    public void clickOnCreateNewButton() {
         CommonMethod.clickOnElement(createNewButton);
     }
 
     /*Checking Create new page is displayed or not*/
-    public void checkMotherDetailsPage(String actualValue){
-        Assert.assertTrue("Mother Registration create page is not displaying",motherRegistrationPage.getText().equals(actualValue));
+    public void checkMotherDetailsPage(String actualValue) {
+        Assert.assertTrue("Mother Registration create page is not displaying", motherRegistrationPage.getText().equals(actualValue));
     }
 
     /*Entering MrNo*/
-    public void enterTheValuesInMrNoFields(String textBoxValue){
-        CommonMethod.clearAndEnterAValueInATextBox(mrNo, textBoxValue);
+    public void enterTheValuesInMrNoFields() {
+        int mr = (int)(100000 * Math.random());
+        CommonMethod.clearAndEnterAValueInATextBox(mrNo, "M/" + mr);
+        String mrnumb = mrNo.getAttribute("value");
+        byte[] b = mrnumb.getBytes();
+        pw.loadWriter(b);
     }
 
     /*Selecting Mother Title*/
-    public void selectTitle(String Value){
+    public void selectTitle(String Value) {
         CommonMethod.clickOndropDown(motherTitleDropDown, Value);
     }
 
     /*Select the Partner's title*/
-    public void selectPartnerTitle(String partnerValue){
+    public void selectPartnerTitle(String partnerValue) {
         CommonMethod.clickOndropDown(partnerTitle, partnerValue);
     }
 
     /*Entering Mother Initial*/
-    public void enterMothersInitial(String motherInitialValue){
+    public void enterMothersInitial(String motherInitialValue) {
         CommonMethod.clearAndEnterAValueInATextBox(motherInitialTextBox, motherInitialValue);
     }
 
     /*Enter Partner's Initial*/
-    public void enterPartnersInitial(String partnerInitialValue){
+    public void enterPartnersInitial(String partnerInitialValue) {
         CommonMethod.clearAndEnterAValueInATextBox(partnerInitial, partnerInitialValue);
     }
 
     /*Entering Mother First Name*/
-    public void enterMothersFirstName(String motherFirstNameValue){
+    public void enterMothersFirstName(String motherFirstNameValue) {
         CommonMethod.clearAndEnterAValueInATextBox(motherName, motherFirstNameValue);
 
     }
 
     /*Enter Partner's First Name*/
-    public void enterPartnersFirstName(String partnerFirstNameValue){
+    public void enterPartnersFirstName(String partnerFirstNameValue) {
         CommonMethod.clearAndEnterAValueInATextBox(partnerFirstName, partnerFirstNameValue);
     }
 
     /*Entering Mother Last Name*/
-    public void enterMothersLastName(String motherlastNameValue){
+    public void enterMothersLastName(String motherlastNameValue) {
         CommonMethod.clearAndEnterAValueInATextBox(motherLastName, motherlastNameValue);
     }
 
     /*Entering Partners LastName*/
-    public void enterPartnersLastName(String partnerLastNameValue){
+    public void enterPartnersLastName(String partnerLastNameValue) {
         CommonMethod.clearAndEnterAValueInATextBox(partnerLastName, partnerLastNameValue);
     }
 
     /*Selecting Mother's DOB*/
-    public void selectMothersDob(String month, String year){
+    public void selectMothersDob(String month, String year) {
         CommonMethod.clickOnElement(motherDatePicker);
         CommonMethod.clickOndropDown(selectMonth, month);
         CommonMethod.clickOndropDown(selectYear, year);
@@ -305,7 +313,7 @@ public class NeonatalMotherRegPage {
     }
 
     /*Selecting Partner's DOB*/
-    public void selectPartnersDob(String month, String year){
+    public void selectPartnersDob(String month, String year) {
         CommonMethod.clickOnElement(partnerDOB);
         CommonMethod.clickOndropDown(selectMonth, month);
         CommonMethod.clickOndropDown(selectYear, year);
@@ -313,116 +321,116 @@ public class NeonatalMotherRegPage {
     }
 
     /*Selecting Mother's Education Status*/
-    public void selectMothersEducationStatus(String motherEducationStatusValue){
+    public void selectMothersEducationStatus(String motherEducationStatusValue) {
         CommonMethod.clickOndropDown(status, motherEducationStatusValue);
     }
 
     /*Selecting Partner's Education Status*/
-    public void selectPartnersEducationStatus(String partnerEducationStatusValue){
+    public void selectPartnersEducationStatus(String partnerEducationStatusValue) {
         CommonMethod.clickOndropDown(partnerEducationStatus, partnerEducationStatusValue);
     }
 
     /*Entering Mother's Occupation*/
-    public void enterMothersOccupation(String motherOccupationValue){
+    public void enterMothersOccupation(String motherOccupationValue) {
         CommonMethod.clearAndEnterAValueInATextBox(motherOccupation, motherOccupationValue);
     }
 
     /*Entering Partner's Occupation*/
-    public void enterPartnersOccupation(String partnerOccupationValue){
+    public void enterPartnersOccupation(String partnerOccupationValue) {
         CommonMethod.clearAndEnterAValueInATextBox(partnerOccupation, partnerOccupationValue);
     }
 
     /*Selecting Mother's Occupation Status*/
-    public void selectMothersOccupationStatus(String motherOccupationstatusValue){
+    public void selectMothersOccupationStatus(String motherOccupationstatusValue) {
         CommonMethod.clickOndropDown(motherOccupationStatus, motherOccupationstatusValue);
     }
 
     /*Selecting Partner's Occupation Status*/
-    public void selectPartnersOccupationStatus(String partnerOccupationStatusValue){
+    public void selectPartnersOccupationStatus(String partnerOccupationStatusValue) {
         CommonMethod.clickOndropDown(partnerOccupationStatus, partnerOccupationStatusValue);
     }
 
     /*Entering Mother and Partner's mobile number*/
-    public void enterMobileNo(String mobileNo, String landLine){
+    public void enterMobileNo(String mobileNo, String landLine) {
         CommonMethod.clearAndEnterAValueInATextBox(motherMobileNo, mobileNo);
-        CommonMethod.clearAndEnterAValueInATextBox(landLineNo,landLine);
+        CommonMethod.clearAndEnterAValueInATextBox(landLineNo, landLine);
     }
 
     /*Entering Mother and Partner's Email*/
-    public void enterMothersEmail(String motherEmail){
+    public void enterMothersEmail(String motherEmail) {
         CommonMethod.clearAndEnterAValueInATextBox(email, motherEmail);
     }
 
     /*Entering Mother and Partner's Spoken language*/
-    public void enterMothersSpokenLanguage(String language){
+    public void enterMothersSpokenLanguage(String language) {
         CommonMethod.clearAndEnterAValueInATextBox(motherLanguage, language);
     }
 
     /*Clicking on Same as mother's contact details including languages check box*/
-    public void clickOnSameContactCheckBox(){
+    public void clickOnSameContactCheckBox() {
         CommonMethod.clickOnCheckBox(checkBox);
     }
 
-    public void checkSamevalueIsDisplayed(){
+    public void checkSamevalueIsDisplayed() {
         Assert.assertTrue("Contact1 does not match", motherMobileNo.getText().equals(partnerMobileNo.getText()));
         Assert.assertTrue("Contact2 does not match", landLineNo.getText().equals(partnerLandLine.getText()));
         Assert.assertTrue("Email does not match", email.getText().equals(partnerEmail.getText()));
         Assert.assertTrue("Language does not match", motherLanguage.getText().equals(partnerLanguage.getText()));
     }
 
-   /*Entering the value in address1 text field*/
-   public void enterTheValueInAddress1Field(String address1Values){
-       CommonMethod.clearAndEnterAValueInATextBox(address1, address1Values);
-   }
+    /*Entering the value in address1 text field*/
+    public void enterTheValueInAddress1Field(String address1Values) {
+        CommonMethod.clearAndEnterAValueInATextBox(address1, address1Values);
+    }
 
-   /*Entering the value in address2 text field*/
-   public void enterTheValueInAddress2Field(String address2Value){
-       CommonMethod.clearAndEnterAValueInATextBox(address2, address2Value);
-   }
+    /*Entering the value in address2 text field*/
+    public void enterTheValueInAddress2Field(String address2Value) {
+        CommonMethod.clearAndEnterAValueInATextBox(address2, address2Value);
+    }
 
-   /*Entering the value in address3 text field*/
-   public void enterTheValueInAddress3Field(String cityValue){
-       CommonMethod.clearAndEnterAValueInATextBox(city, cityValue);
-   }
+    /*Entering the value in address3 text field*/
+    public void enterTheValueInAddress3Field(String cityValue) {
+        CommonMethod.clearAndEnterAValueInATextBox(city, cityValue);
+    }
 
-   /*Entering the value in address4 text field*/
-   public void enterTheValueInaddress4field(String pinCodeValue){
-       CommonMethod.clearAndEnterAValueInATextBox(pinCode, pinCodeValue);
-   }
+    /*Entering the value in address4 text field*/
+    public void enterTheValueInaddress4field(String pinCodeValue) {
+        CommonMethod.clearAndEnterAValueInATextBox(pinCode, pinCodeValue);
+    }
 
-   /*Entering the value in address5 text field*/
-   public void enterTheValueInaddress5field(String countryValue){
-       CommonMethod.clearAndEnterAValueInATextBox(country, countryValue);
-   }
+    /*Entering the value in address5 text field*/
+    public void enterTheValueInaddress5field(String countryValue) {
+        CommonMethod.clearAndEnterAValueInATextBox(country, countryValue);
+    }
 
     /*Clicking on Same as Current Address check box*/
-    public void clickOnSameAddressCheckBox(){
+    public void clickOnSameAddressCheckBox() {
         CommonMethod.clickOnCheckBox(sameAddressCheckBox);
     }
 
     /*Checking same address is displaying in current address and mailing address*/
-    public void checkSameAddressIsDisplaying(){
-       Assert.assertTrue("Address1 field doesn't match", address1.getText().equals(mailAddress1.getText()));
-       Assert.assertTrue("Address2 field doesn't match", address2.getText().equals(mailAddress2.getText()));
-       Assert.assertTrue("Address3 field doesn't match", city.getText().equals(mailAddress3.getText()));
-       Assert.assertTrue("Address4 field doesn't match", pinCode.getText().equals(mailAddress4.getText()));
-       Assert.assertTrue("Address5 field doesn't match", country.getText().equals(mailAddress5.getText()));
+    public void checkSameAddressIsDisplaying() {
+        Assert.assertTrue("Address1 field doesn't match", address1.getText().equals(mailAddress1.getText()));
+        Assert.assertTrue("Address2 field doesn't match", address2.getText().equals(mailAddress2.getText()));
+        Assert.assertTrue("Address3 field doesn't match", city.getText().equals(mailAddress3.getText()));
+        Assert.assertTrue("Address4 field doesn't match", pinCode.getText().equals(mailAddress4.getText()));
+        Assert.assertTrue("Address5 field doesn't match", country.getText().equals(mailAddress5.getText()));
     }
 
     /*After entering the values in the field clicking on save and close button*/
-    public void clickOnSaveAndCloseButton(){
+    public void clickOnSaveAndCloseButton() {
 
         CommonMethod.clickOnAButton(saveAndClose);
     }
 
     /*Entering a value in a search box*/
-    public void enterAValueInSearchBox(String searchName){
+    public void enterAValueInSearchBox(String searchName) {
         CommonMethod.clearAndEnterAValueInATextBox(searchBox, searchName);
         searchClick.click();
     }
 
     /*Checking whether the entered mrno are saved and displayed*/
-    public void checkMotherIsRegistered(String mrNoValue){
+    public void checkMotherIsRegistered(String mrNoValue) {
         Assert.assertTrue("Mother Registration is not saved", mrnoSearch.getText().equals(mrNoValue));
     }
 

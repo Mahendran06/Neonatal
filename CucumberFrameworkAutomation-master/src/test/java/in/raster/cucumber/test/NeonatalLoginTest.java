@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/java/in/raster/cucumber/features/" ,
-        tags = "@neonatalLogin",
+        tags = {"@neonatalLogin"},
         glue = "in.raster.cucumber.steps",
         format = {"pretty", "html:target/cucumber", "json:target/cucumber-report.json"})
 
