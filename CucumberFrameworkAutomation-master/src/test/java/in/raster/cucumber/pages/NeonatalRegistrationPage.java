@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class NeonatalRegistrationPage {
 
     private WebDriver driver;
+
     public NeonatalRegistrationPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -19,7 +20,7 @@ public class NeonatalRegistrationPage {
     private WebElement registerBabyButton;
 
     /*Performing Actions*/
-    public void clickOnRegisterBabyButton(){
+    public void clickOnRegisterBabyButton() {
         CommonMethod.clickOnAButton(registerBabyButton);
     }
 }

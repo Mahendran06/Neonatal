@@ -1,6 +1,5 @@
 package in.raster.cucumber.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import in.raster.cucumber.pages.NeonatalMotherRegPage;
@@ -8,6 +7,7 @@ import in.raster.cucumber.pages.NeonatalRegistrationPage;
 import in.raster.cucumber.utilities.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import in.raster.cucumber.pages.NeonatalBabyRegPage;
+import in.raster.cucumber.utilities.PropertyWriter;
 
 public class NeonatalRegistrationStepDefs {
 
@@ -16,14 +16,14 @@ public class NeonatalRegistrationStepDefs {
 
     private NeonatalMotherRegPage neoMother = new NeonatalMotherRegPage(driver);
 
-    public NeonatalBabyRegPage neoBaby = new NeonatalBabyRegPage(driver);
+    private NeonatalBabyRegPage neoBaby = new NeonatalBabyRegPage(driver);
+
 
 
     /*Mother's MrNo*/
-    @Then("^enter MrNo as \"([^\"]*)\"$")
-    public void enter_MrNo_as(String mrno) throws Throwable {
-        neoMother.enterTheValuesInMrNoFields(mrno);
-        String MrNO = mrno;
+    @Then("^enter MrNo$")
+    public void enterMrNo() throws Throwable {
+        neoMother.enterTheValuesInMrNoFields();
     }
 
     /*Mother's Title*/
@@ -43,7 +43,6 @@ public class NeonatalRegistrationStepDefs {
     public void enter_mother_name_as(String mname) throws Throwable {
         neoMother.enterMothersFirstName(mname);
         neoBaby.setMotherName(mname);
-
     }
 
     /*Mother's Last Name*/
@@ -52,9 +51,9 @@ public class NeonatalRegistrationStepDefs {
         neoMother.enterMothersLastName(lname);
     }
 
-    /*Mother's DOB*/
-    @Then("^select mothers dob as (\\d+)-(\\d+)-(\\d+)$")
-    public void select_mothers_dob_as(String arg1, String month, String year) throws Throwable {
+    /*Selecting Mother's DOB*/
+    @And("^select mothers dob as \"([^\"]*)\" \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void selectMothersDobAsAnd(String date, String month, String year) throws Throwable {
         neoMother.selectMothersDob(month, year);
     }
 
@@ -119,9 +118,9 @@ public class NeonatalRegistrationStepDefs {
     }
 
     /*Partner's DOB*/
-    @Then("^select partners dob as (\\d+)-(\\d+)-(\\d+)$")
-    public void select_partners_dob_as(String date, String month, String year) throws Throwable {
-        neoMother.selectPartnersDob(month, year);
+    @And("^select partners dob as \"([^\"]*)\" \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void selectPartnersDobAsAnd(String pDate, String pMonth, String pYear) throws Throwable {
+        neoMother.selectPartnersDob(pMonth, pYear);
     }
 
     /*Partner's Education*/
@@ -191,9 +190,60 @@ public class NeonatalRegistrationStepDefs {
         neonatalReg.clickOnRegisterBabyButton();
     }
 
+    /*Enter Baby's MrNo*/
     @Then("^enter baby MrNo as \"([^\"]*)\"$")
     public void enterBabyMrNoAs(String bMrNo) throws Throwable {
         neoBaby.enterBabyMrNo(bMrNo);
+    }
+
+    /*Selecting Baby's DOB*/
+    @Then("^select babys dob as \"([^\"]*)\" \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void selectBabysDobAsAnd(String Bdate, String Bmonth, String Byear) throws Throwable {
+        neoBaby.selectBabyDob(Bmonth, Byear);
+    }
+
+    /*Selecting Baby's TOB*/
+    @And("^select babys time of birth as \"([^\"]*)\" \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void selectBabysTimeOfBirthAsAnd(String mins, String secs, String day) throws Throwable {
+        neoBaby.selectBabyTimeOfBirth(mins, secs, day);
+    }
+
+    /*Selecting Multiple Pregnancy Yes or No*/
+    @And("^select muliple pregnancy type as \"([^\"]*)\"$")
+    public void selectMuliplePregnancyTypeAs(String multiplePregnancy) throws Throwable {
+        neoBaby.selectMothersPregnancyType(multiplePregnancy);
+    }
+
+    /*Selecting Sex of the baby*/
+    @And("^select baby sex as \"([^\"]*)\"$")
+    public void selectBabySexAs(String sex) throws Throwable {
+        neoBaby.selectBabySex(sex);
+    }
+
+    /*Entering Gestation Weeks and Days*/
+    @And("^enter gestation of baby as \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void enterGestationOfBabyAsAnd(String gWeeks, String gDays) throws Throwable {
+        neoBaby.enterGestationWeeksAndDays(gWeeks, gDays);
+    }
+
+    @And("^enter birth status of baby as \"([^\"]*)\"$")
+    public void enterBirthStatusOfBabyAs(String birthStatus) throws Throwable {
+        neoBaby.selectBabyBirthStatus(birthStatus);
+    }
+
+    @And("^enter birth weight of baby as \"([^\"]*)\"$")
+    public void enterBirthWeightOfBabyAs(String bWeight) throws Throwable {
+        neoBaby.enterBirthWeightOfBaby(bWeight);
+    }
+
+    @And("^select babys blood group as \"([^\"]*)\"$")
+    public void selectBabysBloodGroupAs(String bloodGroup) throws Throwable {
+        neoBaby.selectBabysBloodGroup(bloodGroup);
+    }
+
+    @And("^select consultant as \"([^\"]*)\"$")
+    public void selectConsultantAs(String neonatalConsultant) throws Throwable {
+        neoBaby.selectNeonatalConsultant(neonatalConsultant);
     }
 
 }

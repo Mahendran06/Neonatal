@@ -75,7 +75,7 @@ public class NeonatalBabyRegPage {
     private WebElement babyYear;
 
     /*Xpath for selecting DOB day*/
-    @FindBy(xpath = "//a[@href='#' and contains(text(), '18')]")
+    @FindBy(xpath = "//a[@href='#' and contains(text(), '10')]")
     private WebElement babyDate;
 
     /*Xpath for selecting Time of Birth*/
